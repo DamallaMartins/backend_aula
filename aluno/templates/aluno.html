@@ -15,39 +15,49 @@
     </nav>
 
     <main class="container pb-5">
+
         <div class="d-flex justify-content-between align-items-center mb-3">
-            <h1 class="h3 mb-0">Alunos cadastrados</h1>
-            <span class="badge bg-primary rounded-pill fs-6">{{ alunos|length }}</span>
+            <h1 class="h3 mb-0">Alunos cadastrados
+                <span class="badge bg-primary rounded-pill fs-6 ms-2">{{ alunos|length }}</span>
+            </h1>
+            <a href="{% url 'criar_aluno' %}" class="btn btn-primary">➕ Novo Aluno</a>
         </div>
 
         {% if alunos %}
-            <div class="card shadow-sm">
-                <div class="table-responsive">
-                    <table class="table table-striped table-hover align-middle mb-0">
-                        <thead class="table-dark">
-                            <tr>
-                                <th scope="col">Nome</th>
-                                <th scope="col">Curso</th>
-                                <th scope="col">Bio</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {% for aluno in alunos %}
-                                <tr>
-                                    <td class="fw-semibold">{{ aluno.nome }}</td>
-                                    <td><span class="badge bg-secondary">{{ aluno.curso }}</span></td>
-                                    <td class="text-muted">{{ aluno.bio|default:"—" }}</td>
-                                </tr>
-                            {% endfor %}
-                        </tbody>
-                    </table>
-                </div>
+        <div class="card shadow-sm">
+            <div class="table-responsive">
+                <table class="table table-striped table-hover align-middle mb-0">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>Nome</th>
+                            <th>Curso</th>
+                            <th>Bio</th>
+                            <th class="text-center">Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for aluno in alunos %}
+                        <tr>
+                            <td class="fw-semibold">{{ aluno.nome }}</td>
+                            <td><span class="badge bg-secondary">{{ aluno.curso }}</span></td>
+                            <td class="text-muted">{{ aluno.bio|default:"—" }}</td>
+                            <td class="text-center">
+                                <a href="{% url 'editar_aluno' aluno.pk %}" class="btn btn-sm btn-warning me-1">✏️ Editar</a>
+                                <a href="{% url 'excluir_aluno' aluno.pk %}" class="btn btn-sm btn-danger">🗑️ Excluir</a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
             </div>
+        </div>
         {% else %}
-            <div class="alert alert-warning" role="alert">
-                Nenhum aluno cadastrado ainda.
-            </div>
+        <div class="alert alert-warning" role="alert">
+            Nenhum aluno cadastrado ainda.
+            <a href="{% url 'criar_aluno' %}" class="alert-link">Cadastre o primeiro!</a>
+        </div>
         {% endif %}
+
     </main>
 
 </body>
