@@ -1,7 +1,6 @@
-# Cartão de Identidade Acadêmica digital (incompleto)
+# Cartão de Identidade Acadêmica digital
 
 O projeto visa criar um cartão de identidade acadêmica digital com 3 informações centrais, nome, curso e bio, utilizando do Django.
-> Sistema incompleto, sem front-end próprio.
 
 # Tecnologias utilizadas
 
