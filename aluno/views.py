@@ -18,11 +18,11 @@ def criar_aluno(request):
 def editar_aluno(request, pk):
     aluno = get_object_or_404(Aluno, pk=pk)
     if request.method == 'POST':
-        aluno.nome = request.POST['nome']
-        aluno.curso = request.POST['curso']
-        aluno.bio = request.POST.get('bio', '')
-        aluno.save()
-        return redirect('aluno')
+            aluno.nome = request.POST['nome']
+            aluno.curso = request.POST['curso']
+            aluno.bio = request.POST.get('bio', '')
+            aluno.save()
+            return redirect('aluno')
     return render(request, 'aluno/form_aluno.html', {'aluno': aluno, 'titulo': f'Editar: {aluno.nome}'})
 
 def excluir_aluno(request, pk):
